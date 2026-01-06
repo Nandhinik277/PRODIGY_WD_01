@@ -1,0 +1,128 @@
+:root {
+    --charcoal: #121212;
+    --emerald: #10b981;
+    --off-white: #f8fafc;
+    --nav-height-initial: 80px;
+    --nav-height-scrolled: 60px;
+}
+#hero, #Overview, #Lessons, #Practice, #Feedback {
+    background-color: rgba(96, 127, 172, 0.3); /* very light dark overlay */
+    backdrop-filter: blur(3px); /* soft blur for text readability */
+    padding: 2rem; /* ensure spacing */
+    border-radius: 8px; /* optional for softer edges */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--charcoal);
+    color: var(--off-white);
+    scroll-behavior: smooth;
+}
+
+
+.navbar {
+    transition: all 0.3s ease-in-out;
+    height: var(--nav-height-initial);
+}
+
+.initial-nav {
+    background-color: transparent;
+}
+
+.scrolled-nav {
+    height: var(--nav-height-scrolled);
+    /* Use Tailwind blur via JS toggle */
+    /* background-color and border */
+    background-color: rgba(18,18,18,0.9);
+    border-bottom: 2px solid var(--emerald);
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+}
+
+.nav-link {
+    position: relative;
+    color: var(--off-white);
+    transition: color 0.2s ease-in-out;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    height: 3px;
+    width: 3px;
+    border-radius: 50%;
+    background-color: var(--emerald);
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    color: var(--emerald);
+}
+
+.nav-link:hover::after {
+    transform: translateX(-50%) scaleX(1) scale(3);
+}
+
+.cta-glow-button {
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 0 var(--emerald);
+}
+
+.cta-glow-button:hover {
+    box-shadow: 0 0 10px 2px var(--emerald);
+    transform: translateY(-2px);
+}
+
+.hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.hamburger-icon div {
+    width: 100%;
+    height: 3px;
+    background-color: var(--off-white);
+    border-radius: 9999px;
+    transition: all 0.3s linear;
+}
+
+.hamburger-icon.open .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger-icon.open .line2 {
+    opacity: 0;
+}
+
+.hamburger-icon.open .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+.mobile-menu {
+    transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.mobile-menu.active {
+    max-height: 300px;
+    opacity: 1;
+}
+
+
+#tsparticles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+    pointer-events: none; /* make clicks pass through */
+}
